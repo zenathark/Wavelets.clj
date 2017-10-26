@@ -1,0 +1,3 @@
+[submodule "src/clj/tools"]
+	path = src/clj/tools
+	url = git@github.com:zenathark/Tools.clj.git
