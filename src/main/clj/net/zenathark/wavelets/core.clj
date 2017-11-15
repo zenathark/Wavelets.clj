@@ -1,12 +1,23 @@
 (ns net.zenathark.wavelets.core
   (:gen-class)
-  (:require [clojure.core.matrix :as m]
+  (:require [ring.adapter.jetty :as jetty];[clojure.core.matrix :as m]
             [mikera.image.core :as mik])
-  (:import [java.awt.image BufferedImage]))
+  (:import [java.awt.image BufferedImage])
+  (:use compojure.core))
 
 (defn -main
   [& args]
   (println "Hello, Clojure!"))
+
+(defn -runner
+  [handler]
+  (jetty/run-jetty handler {:port 8080}))
+
+(defn apphandler
+  [request]
+  {:status 200
+   :headers {"Content-Type" "text/html"}
+   :body "Hello from ring"})
 
 (defn tens []
   (println "Hello, Clojure!"))
