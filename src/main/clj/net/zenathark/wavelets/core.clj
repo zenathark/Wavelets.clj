@@ -1,8 +1,12 @@
-(ns zenathark.wavelets.core
+(ns net.zenathark.wavelets.core
   (:gen-class)
   (:require [clojure.core.matrix :as m]
             [mikera.image.core :as mik])
   (:import [java.awt.image BufferedImage]))
+
+(defn -main
+  [& args]
+  (println "Hello, Clojure!"))
 
 (defn tens []
   (println "Hello, Clojure!"))
