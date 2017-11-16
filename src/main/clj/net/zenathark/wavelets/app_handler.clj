@@ -6,13 +6,13 @@
             [ring.util.response :refer [response content-type]]
             [compojure.core :as ccore]))
 
-(defroutes app
-  (GET "/test" [] (hello-answer)))
+;; (defroutes app
+;;   (GET "/test" [] (hello-answer)))
 
 (defn response-image [image fmt]
   (-> image
-      (zimage/image->output-stream fmt)
-      response
+      (zimage/image->input-stream fmt)
+      (response)
       (content-type "image/png"))) 
 
 (defprotocol ServerRoutes
@@ -35,7 +35,7 @@
 (extend-type ServerState
   ImageDisplay
   (imshow! [this image fmt image-name]
-    (add-route! this (ccore/GET "/test" [] "jiqj"))))
+    (add-route! this (ccore/GET (str "/" image-name) [] (response-image image fmt)))))
 
 (defn make-server-state []
   (->ServerState (atom [])))
